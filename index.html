@@ -5,30 +5,76 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ailyn Gonzalez - Resume</title>
 <style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; color: #333; }
-  .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 30px; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; }
-  header { text-align: center; margin-bottom: 20px; padding: 20px; background: #005a9c; color: #fff; border-radius: 8px 8px 0 0; display: flex; flex-direction: column; align-items: center; }
-  header h1 { font-size: 2.4em; margin: 0; }
-  header .contact { font-size: 0.95em; margin-top: 5px; word-wrap: break-word; }
-  .headshot { width: 120px; height: 120px; object-fit: cover; border: 3px solid #fff; background: #fff; }
-  h2 { color: #005a9c; margin-top: 30px; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
-  ul { list-style-position: outside; padding-left: 40px; }
-  li { margin-bottom: 8px; line-height: 1.6; }
-  .job-title { font-weight: bold; font-size: 1.1em; margin-top: 15px; }
-  .job-details { font-style: italic; font-size: 0.9em; color: #666; margin-bottom: 10px; }
-
-  @media (max-width: 768px) {
-    .container { padding: 20px; margin: 10px; }
-    header h1 { font-size: 2em; }
-    .headshot { width: 100px; height: 100px; }
-    ul { padding-left: 20px; }
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    color: #333;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
-
-  @media (max-width: 480px) {
-    .container { padding: 15px; margin: 5px; }
-    header h1 { font-size: 1.6em; }
-    .headshot { width: 80px; height: 80px; }
-    .contact { font-size: 0.85em; }
+  .container {
+    max-width: 900px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #005a9c;
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  header h1 {
+    font-size: 2.4em;
+    margin: 10px 0 5px;
+  }
+  header .contact {
+    font-size: 0.95em;
+    margin-top: 5px;
+  }
+  .headshot {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    background: #fff;
+    border-radius: 4px;
+  }
+  h2 {
+    color: #005a9c;
+    margin-top: 30px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+  }
+  ul {
+    list-style: disc inside;
+    padding-left: 20px;
+  }
+  li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+  .job-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 15px;
+  }
+  .job-details {
+    font-style: italic;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
   }
 </style>
 </head>
@@ -38,7 +84,8 @@
     <img src="headshot.jpg" alt="Ailyn Gonzalez Headshot" class="headshot">
     <h1>Ailyn Gonzalez</h1>
     <div class="contact">
-      (786) 246-0555 | ailyn@eleventen.net | <a href="https://linkedin.com/in/ailyng" style="color:#fff; text-decoration:underline;">linkedin.com/in/ailyng</a>
+      (786) 246-0555 | ailyn@eleventen.net | 
+      <a href="https://linkedin.com/in/ailyng" style="color:#fff; text-decoration:underline;">linkedin.com/in/ailyng</a>
     </div>
   </header>
 
@@ -94,11 +141,11 @@
       <li>Managed IT onboarding, including provisioning and configuring equipment for new staff.</li>
     </ul>
 
-    <div class="job-title">Previous Roles (2005–2014)</div>
+    <div class="job-title">Previous Roles (2005 – 2014)</div>
     <div class="job-details">Various South Florida Companies</div>
     <ul>
       <li>Desktop Support, System Administrator, Network Administrator.</li>
-      <li>Held a series of progressively responsible IT roles across industries including education, hospitality, commodities trading, and corporate travel.</li>
+      <li>Held progressively responsible IT roles across industries including education, hospitality, commodities trading, and corporate travel.</li>
       <li>Gained hands-on experience supporting end users, managing infrastructure, and troubleshooting systems across diverse technical environments.</li>
     </ul>
   </div>
@@ -117,8 +164,20 @@
 
   <div>
     <h2>Education</h2>
-    <p>Bachelor of Science – Information Technology, Miami, FL</p>
+    <p>Bachelor of Science – Information Technology<br>Miami, FL</p>
   </div>
 </div>
+
+<script>
+  // Disable right-click
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  // Disable Ctrl+C / Ctrl+V / Ctrl+X
+  document.addEventListener('keydown', function (event) {
+    if ((event.ctrlKey || event.metaKey) && ['c', 'v', 'x'].includes(event.key.toLowerCase())) {
+      event.preventDefault();
+    }
+  });
+</script>
+
 </body>
 </html>
