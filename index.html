@@ -10,7 +10,25 @@
   .container { max-width: 900px; margin: 20px auto; background: #fff; padding: 30px; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 8px; }
   header { text-align: center; margin-bottom: 20px; padding: 20px; background: #005a9c; color: #fff; border-radius: 8px 8px 0 0; display: flex; flex-direction: column; align-items: center; }
   header h1 { font-size: 2.4em; margin: 0; }
-  header .contact { font-size: 0.95em; margin-top: 5px; word-wrap: break-word; }
+  header .contact {
+    display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; justify-content: center;
+  }
+  header .btn {
+    background-color: #fff;
+    color: #005a9c;
+    border: 1px solid #fff;
+    padding: 4px 8px;
+    text-decoration: none;
+    font-size: 0.85em;
+    border-radius: 3px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  header .btn:hover {
+    background-color: #005a9c;
+    color: #fff;
+  }
+
   .headshot { width: 120px; height: 120px; object-fit: cover; border: 3px solid #fff; background: #fff; pointer-events: none; }
   h2 { color: #005a9c; margin-top: 30px; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
   ul { list-style-position: outside; padding-left: 40px; }
@@ -33,7 +51,7 @@
   }
 </style>
 <script>
-// disable right-click and text selection
+// disable right-click, drag, text selection
 document.addEventListener('contextmenu', e => e.preventDefault());
 document.addEventListener('dragstart', e => e.preventDefault());
 </script>
@@ -44,7 +62,8 @@ document.addEventListener('dragstart', e => e.preventDefault());
     <img src="headshot.jpg" alt="Ailyn Gonzalez Headshot" class="headshot">
     <h1>Ailyn Gonzalez</h1>
     <div class="contact">
-      (786) 246-0555 | ailyn@eleventen.net | <a href="https://linkedin.com/in/ailyng" style="color:#fff; text-decoration:underline;">linkedin.com/in/ailyng</a>
+      <a href="mailto:ailyn@eleventen.net" class="btn">📧 Email Me</a>
+      <a href="https://linkedin.com/in/ailyng" target="_blank" class="btn">🔗 LinkedIn</a>
     </div>
   </header>
 
