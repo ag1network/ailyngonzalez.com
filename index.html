@@ -16,110 +16,443 @@
       --bg:#070B14;
       --panel:rgba(255,255,255,.06);
       --panel2:rgba(255,255,255,.04);
-      --border:rgba(255,255,255,.10);
+      --border:rgba(255,255,255,.12);
       --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --muted:rgba(255,255,255,.72);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
       --radius:18px;
       --a1:#1463FF;
       --a2:#10B981;
       --max:1120px;
+
+      --pad: clamp(14px, 2.4vw, 22px);
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
     body{
       margin:0;
-      font-family:Inter,system-ui,Arial;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--text);
       background:
         radial-gradient(900px 600px at 12% 10%, rgba(20,99,255,.18), transparent 55%),
         radial-gradient(900px 600px at 90% 20%, rgba(16,185,129,.16), transparent 60%),
         var(--bg);
       line-height:1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{max-width:var(--max);margin:0 auto;padding:20px 16px 72px}
 
-    /* NAV */
-    .topbar{position:sticky;top:12px;z-index:50;margin-bottom:18px}
-    .nav{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:10px 14px;border-radius:999px;
-      background:rgba(5,8,15,.55);backdrop-filter:blur(10px);
-      border:1px solid var(--border);
+    a{ color:inherit; text-decoration:none }
+    p{ margin:0 }
+    ::selection{ background: rgba(20,99,255,.35); }
+
+    .wrap{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 14px 14px 72px;
     }
-    .brand{display:flex;align-items:center;gap:10px}
+
+    /* ---------- Cards / Sections ---------- */
+    .card{
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    section{ margin-top: 14px; }
+    .section{ padding: var(--pad); }
+
+    .sectionHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:12px;
+      margin-bottom: 10px;
+    }
+    h2{
+      margin:0;
+      font-size: clamp(16px, 2.4vw, 18px);
+      letter-spacing: -.01em;
+    }
+    .hint{
+      color:var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .tile, .role{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: var(--panel2);
+    }
+
+    /* ---------- Top Nav (mobile-first) ---------- */
+    .topbar{
+      position: sticky;
+      top: 10px;
+      z-index: 50;
+      margin: 8px 0 14px;
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(5,8,15,.55);
+      backdrop-filter: blur(10px);
+      border:1px solid var(--border);
+      box-shadow: 0 14px 45px rgba(0,0,0,.30);
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
     .mark{
-      width:12px;height:12px;border-radius:50%;
+      width:12px;height:12px;border-radius:999px;
       background:linear-gradient(135deg,var(--a1),var(--a2));
+      flex: 0 0 auto;
+    }
+    .brandText{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width:0;
+    }
+    .brandText strong{
+      font-weight: 850;
+      font-size: 14px;
+      letter-spacing: .2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 56vw;
     }
     .pill{
+      display:block;
+      color: rgba(255,255,255,.70);
+      font-size: 12.5px;
+      font-weight: 650;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 64vw;
+    }
+
+    .links{
       display:none;
-      padding:8px 10px;border-radius:999px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);font-size:13px;
+      gap:6px;
+      align-items:center;
     }
-    .links{display:flex;gap:6px}
     .link{
-      padding:10px 12px;border-radius:999px;
-      color:var(--muted);font-weight:600;font-size:14px;
+      padding:10px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-weight:700;
+      font-size:14px;
+      border: 1px solid transparent;
     }
-    .link:hover{background:rgba(255,255,255,.06);color:#fff}
+    .link:hover{
+      background: rgba(255,255,255,.06);
+      color:#fff;
+      border-color: rgba(255,255,255,.10);
+    }
 
-    @media(min-width:900px){.pill{display:inline-flex}}
-    @media(max-width:899px){.links{display:none}}
+    .menuBtn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      cursor:pointer;
+      transition: transform .08s ease, background .2s ease;
+      flex: 0 0 auto;
+    }
+    .menuBtn:active{ transform: translateY(1px); }
+    .menuBtn:hover{ background: rgba(255,255,255,.07); }
 
-    /* HERO */
-    .card{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .hero{padding:22px;margin-bottom:14px}
-    .heroInner{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
-    @media(max-width:899px){.heroInner{grid-template-columns:1fr}}
+    .menuIcon{
+      width: 18px; height: 18px; position: relative;
+    }
+    .menuIcon span{
+      position:absolute; left:0; right:0;
+      height:2px; border-radius:2px;
+      background: rgba(255,255,255,.86);
+      transition: transform .2s ease, top .2s ease, opacity .2s ease;
+    }
+    .menuIcon span:nth-child(1){ top:4px; }
+    .menuIcon span:nth-child(2){ top:8px; }
+    .menuIcon span:nth-child(3){ top:12px; }
 
-    .kicker{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase}
-    h1{margin:10px 0;font-size:38px}
-    .grad{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;color:transparent}
-    .lead{color:var(--muted)}
+    .mobileMenu{
+      display:none;
+      margin-top:10px;
+      border-radius: 16px;
+      border:1px solid var(--border);
+      background: rgba(5,8,15,.70);
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+    }
+    .mobileMenu a{
+      display:block;
+      padding: 14px 14px;
+      color: var(--muted);
+      font-weight: 750;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .mobileMenu a:first-child{ border-top: none; }
+    .mobileMenu a:hover{
+      background: rgba(255,255,255,.05);
+      color: #fff;
+    }
 
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .menuOpen .mobileMenu{ display:block; }
+    .menuOpen .menuIcon span:nth-child(1){ top:8px; transform: rotate(45deg); }
+    .menuOpen .menuIcon span:nth-child(2){ opacity:0; }
+    .menuOpen .menuIcon span:nth-child(3){ top:8px; transform: rotate(-45deg); }
+
+    /* Desktop nav */
+    @media (min-width: 980px){
+      .menuBtn{ display:none; }
+      .links{ display:flex; }
+      .pill{ display:none; } /* keep it cleaner on desktop since links show */
+      .brandText strong{ max-width: 260px; }
+    }
+
+    /* ---------- Hero ---------- */
+    .hero{ padding: var(--pad); }
+
+    .heroGrid{
+      display:grid;
+      gap: 14px;
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .heroMain{
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.12);
+    }
+
+    .kicker{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    h1{
+      margin: 10px 0 10px;
+      font-size: clamp(26px, 6.5vw, 40px);
+      line-height: 1.10;
+      letter-spacing: -.02em;
+    }
+
+    .grad{
+      background:linear-gradient(135deg,var(--a1),var(--a2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .lead{
+      color: var(--muted);
+      font-size: clamp(14px, 2.5vw, 16px);
+      max-width: 75ch;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
     .btn{
-      padding:12px 14px;border-radius:14px;
-      border:1px solid var(--border);
-      background:rgba(255,255,255,.05);
-      font-weight:700;font-size:14px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      font-weight: 800;
+      font-size: 14px;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      cursor:pointer;
+      user-select:none;
+      width: 100%;
     }
-    .btn.primary{background:linear-gradient(135deg,rgba(20,99,255,.35),rgba(16,185,129,.22))}
+    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.20); }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(20,99,255,.36), rgba(16,185,129,.22));
+      border-color: rgba(20,99,255,.30);
+    }
 
-    /* HEADSHOT */
-    .headshotWrap{text-align:center}
+    /* Buttons side-by-side when there’s room */
+    @media (min-width: 520px){
+      .btn{ width: auto; }
+    }
+
+    .heroSide{
+      display:grid;
+      gap: 10px;
+    }
+
+    .headshotWrap{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      padding: 14px;
+    }
+
     .headshot{
-      width:160px;height:160px;border-radius:22px;
-      border:1px solid var(--border);overflow:hidden;
-      margin:0 auto;background:rgba(255,255,255,.06);
+      width: 92px;
+      height: 92px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
+      overflow:hidden;
+      background: rgba(255,255,255,.06);
+      flex: 0 0 auto;
     }
-    .headshot img{width:100%;height:100%;object-fit:cover}
+    .headshot img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
     .fallback{
-      display:flex;align-items:center;justify-content:center;
-      height:100%;font-size:42px;font-weight:800;color:#fff;
+      width:100%;
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      color:#fff;
+      letter-spacing: .06em;
+      background:
+        radial-gradient(120px 120px at 20% 20%, rgba(20,99,255,.35), transparent 60%),
+        radial-gradient(120px 120px at 80% 30%, rgba(16,185,129,.28), transparent 60%),
+        rgba(0,0,0,.18);
+    }
+    .roleMini{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+      min-width:0;
+    }
+    .roleMini strong{ font-size: 14px; }
+    .roleMini span{ color: var(--muted); font-size: 13px; font-weight: 650; }
+
+    .mini{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: var(--panel2);
+    }
+    .mini h3{
+      margin:0 0 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.58);
+    }
+    .mini p{
+      margin:0;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
     }
 
-    /* SECTIONS */
-    section{margin-top:14px}
-    .section{padding:18px}
-    .sectionHead{display:flex;justify-content:space-between;margin-bottom:10px}
-    h2{margin:0;font-size:18px}
-    .tile,.role{
-      padding:14px;border-radius:16px;
-      border:1px solid var(--border);
-      background:var(--panel2);
+    /* Hero becomes 2 columns on larger screens */
+    @media (min-width: 980px){
+      .heroGrid{
+        grid-template-columns: 1.35fr .65fr;
+        align-items: stretch;
+      }
+      .headshot{
+        width: 120px;
+        height: 120px;
+      }
     }
-    .timeline{display:flex;flex-direction:column;gap:10px}
-    .roleTop{display:flex;justify-content:space-between;flex-wrap:wrap}
-    .meta{color:var(--muted);font-size:13px;font-weight:700}
-    ul{padding-left:18px;color:var(--muted)}
-    li{margin:6px 0}
 
-    footer{text-align:center;margin-top:22px;color:var(--muted);font-size:13px}
+    /* ---------- Experience ---------- */
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .roleTop{
+      display:flex;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    ul{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    li{ margin: 6px 0; }
+
+    /* ---------- Skills (mobile grid) ---------- */
+    .skillsGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .skillsGrid .tile strong{
+      display:block;
+      margin-bottom: 6px;
+    }
+    .skillsGrid .tile p{
+      color: var(--muted);
+      font-size: 14px;
+      margin:0;
+    }
+
+    @media (min-width: 740px){
+      .skillsGrid{
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 1100px){
+      .skillsGrid{
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    footer{
+      margin-top: 22px;
+      text-align:center;
+      color: rgba(255,255,255,.60);
+      font-size: 13px;
+    }
   </style>
 </head>
 
@@ -128,28 +461,49 @@
 
   <!-- NAV -->
   <div class="topbar">
-    <div class="nav">
+    <div class="nav" id="nav">
       <div class="brand">
         <div class="mark"></div>
-        <strong>Ailyn Gonzalez</strong>
-        <span class="pill">Infrastructure • Networking • Security • End-User Experience</span>
+        <div class="brandText">
+          <strong>Ailyn Gonzalez</strong>
+          <span class="pill">Infrastructure • Networking • Security • End-User Experience</span>
+        </div>
       </div>
-      <div class="links">
+
+      <!-- Desktop links -->
+      <div class="links" aria-label="Primary navigation">
         <a class="link" href="#summary">Summary</a>
         <a class="link" href="#experience">Experience</a>
         <a class="link" href="#skills">Skills</a>
         <a class="link" href="#certs">Certifications</a>
         <a class="link" href="#education">Education</a>
       </div>
+
+      <!-- Mobile hamburger -->
+      <button class="menuBtn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <div class="menuIcon" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="mobileMenu" id="mobileMenu" aria-label="Mobile menu">
+      <a href="#summary">Summary</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#certs">Certifications</a>
+      <a href="#education">Education</a>
     </div>
   </div>
 
   <!-- HERO -->
-  <div class="card hero">
-    <div class="heroInner">
-      <div>
+  <main class="card hero">
+    <div class="heroGrid">
+      <div class="heroMain">
         <div class="kicker">IT Leader • 20+ Years</div>
-        <h1>Ailyn Gonzalez<br>
+        <h1>
+          Ailyn Gonzalez<br>
           <span class="grad">Infrastructure • Networking • Security • End-User Experience</span>
         </h1>
         <p class="lead">
@@ -159,23 +513,42 @@
         </p>
         <div class="actions">
           <a class="btn primary" href="mailto:ailyn@eleventen.net">Email Me</a>
-          <a class="btn" href="https://linkedin.com/in/ailyng" target="_blank">LinkedIn</a>
+          <a class="btn" href="https://linkedin.com/in/ailyng" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
 
-      <div class="headshotWrap">
-        <div class="headshot">
-          <img src="headshot.jpg" alt="Ailyn Gonzalez" onerror="this.style.display='none'">
-          <div class="fallback">AG</div>
+      <aside class="heroSide">
+        <div class="mini headshotWrap">
+          <div class="headshot" aria-label="Headshot">
+            <img src="headshot.jpg" alt="Ailyn Gonzalez headshot" onerror="this.style.display='none'">
+            <div class="fallback">AG</div>
+          </div>
+          <div class="roleMini">
+            <strong>IT Services Manager</strong>
+            <span>Pilot Thomas Logistics</span>
+            <span>Oct 2025 – Present</span>
+          </div>
         </div>
-        <p class="meta">IT Services Manager<br>Pilot Thomas Logistics</p>
-      </div>
+
+        <div class="mini">
+          <h3>Focus</h3>
+          <p>Network • Infrastructure • Security • Help Desk</p>
+        </div>
+
+        <div class="mini">
+          <h3>Core Stack</h3>
+          <p>Azure • Entra ID • Intune • Microsoft 365 • PowerShell</p>
+        </div>
+      </aside>
     </div>
-  </div>
+  </main>
 
   <!-- SUMMARY -->
   <section id="summary" class="card section">
-    <div class="sectionHead"><h2>Professional Summary</h2></div>
+    <div class="sectionHead">
+      <h2>Professional Summary</h2>
+      <span class="hint">Business-aligned IT leadership</span>
+    </div>
     <div class="tile">
       IT leader with deep hands-on and leadership experience across infrastructure, networking,
       security, identity, and end-user services. Proven ability to manage vendors, lead teams,
@@ -185,9 +558,12 @@
 
   <!-- EXPERIENCE -->
   <section id="experience" class="card section">
-    <div class="sectionHead"><h2>Experience</h2></div>
-    <div class="timeline">
+    <div class="sectionHead">
+      <h2>Experience</h2>
+      <span class="hint">Career progression</span>
+    </div>
 
+    <div class="timeline">
       <div class="role">
         <div class="roleTop">
           <strong>IT Services Manager — Pilot Thomas Logistics</strong>
@@ -238,46 +614,85 @@
           <strong>Previous Roles — Various South Florida Companies</strong>
           <span class="meta">2005 – 2014</span>
         </div>
-        <p style="margin:10px 0 0;color:var(--muted)">
+        <p style="color:var(--muted);margin-top:10px;font-size:14px">
           Desktop Support, System Administrator, and Network Administrator roles across education,
           hospitality, commodities trading, and corporate travel industries.
         </p>
       </div>
-
     </div>
   </section>
 
   <!-- SKILLS -->
   <section id="skills" class="card section">
-    <div class="sectionHead"><h2>Technical Skills</h2></div>
-    <div class="timeline">
+    <div class="sectionHead">
+      <h2>Technical Skills</h2>
+      <span class="hint">Expanded coverage</span>
+    </div>
 
-      <div class="tile"><strong>Cloud & Identity</strong><p>Azure, Entra ID (Azure AD), Okta, SSO, MFA, Conditional Access, Zero Trust, PIM</p></div>
-      <div class="tile"><strong>Endpoint & Device Management</strong><p>Intune, Apple DEP, Samsung Knox, MaaS360, BitLocker, Compliance & Patch Management</p></div>
-      <div class="tile"><strong>Infrastructure</strong><p>Windows Server, Active Directory, Hyper-V, VMware ESXi, AWS</p></div>
-      <div class="tile"><strong>Networking</strong><p>Meraki, Fortinet, Ubiquiti, Aruba, SD-WAN, VPN, DHCP/DNS, HA/Failover</p></div>
-      <div class="tile"><strong>Security & Governance</strong><p>Email Security, DLP, Access Reviews, Audit Support, Vendor Risk Management</p></div>
-      <div class="tile"><strong>Microsoft 365</strong><p>Exchange Online, Teams, SharePoint, OneDrive, Retention & Compliance</p></div>
-      <div class="tile"><strong>Automation</strong><p>PowerShell (user lifecycle, reporting, administration), Workflow Automation</p></div>
-      <div class="tile"><strong>ITSM & Monitoring</strong><p>ServiceNow, Jira, ConnectWise, Monitoring & Alerting</p></div>
-      <div class="tile"><strong>M&A & Integrations</strong><p>Tenant Consolidations, Identity & Email Migrations, Infrastructure Transitions</p></div>
-      <div class="tile"><strong>End-User Operations</strong><p>Help Desk Leadership, White-Glove Support, Outsourced IT Oversight</p></div>
-
+    <div class="skillsGrid">
+      <div class="tile">
+        <strong>Cloud & Identity</strong>
+        <p>Azure, Entra ID (Azure AD), Okta, SSO, MFA, Conditional Access, Zero Trust, PIM</p>
+      </div>
+      <div class="tile">
+        <strong>Endpoint & Device Management</strong>
+        <p>Intune, Apple DEP, Samsung Knox, MaaS360, BitLocker, compliance & patch management</p>
+      </div>
+      <div class="tile">
+        <strong>Infrastructure</strong>
+        <p>Windows Server, Active Directory, Hyper-V, VMware ESXi, AWS</p>
+      </div>
+      <div class="tile">
+        <strong>Networking</strong>
+        <p>Meraki, Fortinet, Ubiquiti, Aruba, SD-WAN, VPN, DHCP/DNS, HA/failover</p>
+      </div>
+      <div class="tile">
+        <strong>Security & Governance</strong>
+        <p>Email security, DLP, access reviews, audit support, vendor risk management</p>
+      </div>
+      <div class="tile">
+        <strong>Microsoft 365</strong>
+        <p>Exchange Online, Teams, SharePoint, OneDrive, retention & compliance</p>
+      </div>
+      <div class="tile">
+        <strong>Automation</strong>
+        <p>PowerShell (user lifecycle, reporting, administration), workflow automation</p>
+      </div>
+      <div class="tile">
+        <strong>ITSM & Monitoring</strong>
+        <p>ServiceNow, Jira, ConnectWise, monitoring & alerting</p>
+      </div>
+      <div class="tile">
+        <strong>M&A & Integrations</strong>
+        <p>Tenant consolidations, identity & email migrations, infrastructure transitions</p>
+      </div>
+      <div class="tile">
+        <strong>End-User Operations</strong>
+        <p>Help desk leadership, white-glove support, outsourced IT oversight</p>
+      </div>
     </div>
   </section>
 
   <!-- CERTS -->
   <section id="certs" class="card section">
-    <div class="sectionHead"><h2>Certifications</h2></div>
+    <div class="sectionHead">
+      <h2>Certifications</h2>
+      <span class="hint">Verified</span>
+    </div>
     <div class="tile">
       <strong>CompTIA Network+</strong> (2025) —
-      <a href="https://www.credly.com/badges/32f9db9d-5304-4ea8-86d8-ffa71082f618/public_url" target="_blank">Digital Badge</a>
+      <a href="https://www.credly.com/badges/32f9db9d-5304-4ea8-86d8-ffa71082f618/public_url" target="_blank" rel="noreferrer" style="text-decoration:underline;text-underline-offset:3px;">
+        Digital Badge
+      </a>
     </div>
   </section>
 
   <!-- EDUCATION -->
   <section id="education" class="card section">
-    <div class="sectionHead"><h2>Education</h2></div>
+    <div class="sectionHead">
+      <h2>Education</h2>
+      <span class="hint">Academic</span>
+    </div>
     <div class="tile">
       Bachelor of Science — Information Technology, Miami, FL
     </div>
@@ -290,7 +705,46 @@
 </div>
 
 <script>
+  // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const nav = document.getElementById('nav');
+
+  function setMenu(open){
+    document.body.classList.toggle('menuOpen', open);
+    menuBtn?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  menuBtn?.addEventListener('click', () => {
+    const open = !document.body.classList.contains('menuOpen');
+    setMenu(open);
+  });
+
+  // Close menu when clicking a link
+  mobileMenu?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => setMenu(false));
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if(!document.body.classList.contains('menuOpen')) return;
+    const inside = nav.contains(e.target) || mobileMenu.contains(e.target);
+    if(!inside) setMenu(false);
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      const el = document.querySelector(id);
+      if(!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 </script>
 </body>
 </html>
