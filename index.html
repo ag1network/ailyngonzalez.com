@@ -24,7 +24,6 @@
       --a1:#1463FF;
       --a2:#10B981;
       --max:1120px;
-
       --pad: clamp(14px, 2.4vw, 22px);
     }
 
@@ -136,15 +135,22 @@
       text-overflow: ellipsis;
       max-width: 56vw;
     }
+
+    /* ✅ 2-line clamp so it doesn't cut off on portrait */
     .pill{
-      display:block;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;    /* show up to 2 lines */
+      overflow: hidden;
+
       color: rgba(255,255,255,.70);
       font-size: 12.5px;
       font-weight: 650;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 64vw;
+      line-height: 1.25;
+
+      white-space: normal;      /* allow wrapping */
+      text-overflow: clip;      /* no ellipsis */
+      max-width: 68vw;          /* keeps it from taking the whole bar */
     }
 
     .links{
@@ -227,7 +233,7 @@
     @media (min-width: 980px){
       .menuBtn{ display:none; }
       .links{ display:flex; }
-      .pill{ display:none; } /* keep it cleaner on desktop since links show */
+      .pill{ display:none; } /* links show on desktop */
       .brandText strong{ max-width: 260px; }
     }
 
@@ -305,7 +311,6 @@
       border-color: rgba(20,99,255,.30);
     }
 
-    /* Buttons side-by-side when there’s room */
     @media (min-width: 520px){
       .btn{ width: auto; }
     }
@@ -313,6 +318,26 @@
     .heroSide{
       display:grid;
       gap: 10px;
+    }
+
+    .mini{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: var(--panel2);
+    }
+    .mini h3{
+      margin:0 0 6px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: rgba(255,255,255,.58);
+    }
+    .mini p{
+      margin:0;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
     }
 
     .headshotWrap{
@@ -360,27 +385,6 @@
     .roleMini strong{ font-size: 14px; }
     .roleMini span{ color: var(--muted); font-size: 13px; font-weight: 650; }
 
-    .mini{
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: var(--panel2);
-    }
-    .mini h3{
-      margin:0 0 6px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.58);
-    }
-    .mini p{
-      margin:0;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 14px;
-    }
-
-    /* Hero becomes 2 columns on larger screens */
     @media (min-width: 980px){
       .heroGrid{
         grid-template-columns: 1.35fr .65fr;
@@ -681,7 +685,9 @@
     </div>
     <div class="tile">
       <strong>CompTIA Network+</strong> (2025) —
-      <a href="https://www.credly.com/badges/32f9db9d-5304-4ea8-86d8-ffa71082f618/public_url" target="_blank" rel="noreferrer" style="text-decoration:underline;text-underline-offset:3px;">
+      <a href="https://www.credly.com/badges/32f9db9d-5304-4ea8-86d8-ffa71082f618/public_url"
+         target="_blank" rel="noreferrer"
+         style="text-decoration:underline;text-underline-offset:3px;">
         Digital Badge
       </a>
     </div>
