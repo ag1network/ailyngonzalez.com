@@ -1,356 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Ailyn Gonzalez — IT Services Manager specializing in infrastructure, networking, security, and end-user experience." />
   <title>Ailyn Gonzalez</title>
+
   <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
-    /*===================
-      Screen & Base CSS
-    ===================*/
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9f9f9;
-      color: #333;
-      user-select: none;
-    }
-    .container {
-      max-width: 900px;
-      margin: 20px auto;
-      background: #fff;
-      padding: 30px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 20px;
-      padding: 20px;
-      background: #005a9c;
-      color: #fff;
-      border-radius: 8px 8px 0 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    header h1 {
-      font-size: 2.4em;
-      margin: 0;
-    }
-    .contact {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .contact-button,
-    .btn {
-      background-color: #fff;
-      color: #005a9c;
-      border: 1px solid #fff;
-      padding: 4px 8px;
-      text-decoration: none;
-      font-size: 0.85em;
-      border-radius: 3px;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    .contact-button:hover,
-    .btn:hover {
-      background-color: #005a9c;
-      color: #fff;
-    }
-    .headshot {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border: 3px solid #fff;
-      background: #fff;
-      margin-top: 10px;
-      pointer-events: none;
-    }
-    h2 {
-      color: #005a9c;
-      margin: 50px 0 15px;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 6px;
-    }
-    ul {
-      list-style-position: outside;
-      padding-left: 40px;
-    }
-    li {
-      margin-bottom: 8px;
-      line-height: 1.6;
-    }
-    .job-title {
-      font-weight: bold;
-      font-size: 1.1em;
-      margin-top: 15px;
-    }
-    .job-details {
-      font-style: italic;
-      font-size: 0.9em;
-      color: #666;
-      margin-bottom: 10px;
-    }
-    .contact-button.small {
-      font-size: 0.8em;
-      padding: 3px 8px;
-    }
-    .print-button {
-      display: none !important;
-      font-size: 0.7em;
-      padding: 2px 6px;
-      margin-left: 10px; /* spacing to the left */
-      margin-top: 12px;  /* bump down a bit */
+    :root{
+      --bg:#070B14;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.04);
+      --border:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --shadow:0 24px 80px rgba(0,0,0,.45);
+      --radius:18px;
+      --a1:#1463FF;
+      --a2:#10B981;
+      --max:1120px;
     }
 
-    /* Responsive tweaks */
-    @media (max-width: 768px) {
-      .container { padding: 20px; margin: 10px; }
-      header h1 { font-size: 2em; }
-      .headshot { width: 100px; height: 100px; }
-      ul { padding-left: 20px; }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 12% 10%, rgba(20,99,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 90% 20%, rgba(16,185,129,.16), transparent 60%),
+        var(--bg);
+      line-height:1.55;
     }
-    @media (max-width: 480px) {
-      .container { padding: 15px; margin: 5px; }
-      header h1 { font-size: 1.6em; }
-      .headshot { width: 80px; height: 80px; }
-      .contact { font-size: 0.85em; }
-      .contact-button {
-        font-size: 0.75em;
-        padding: 2px 6px;
-        margin: 2px;
-      }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:20px 16px 72px}
+
+    /* NAV */
+    .topbar{position:sticky;top:12px;z-index:50;margin-bottom:18px}
+    .nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:10px 14px;border-radius:999px;
+      background:rgba(5,8,15,.55);backdrop-filter:blur(10px);
+      border:1px solid var(--border);
+    }
+    .brand{display:flex;align-items:center;gap:10px}
+    .mark{
+      width:12px;height:12px;border-radius:50%;
+      background:linear-gradient(135deg,var(--a1),var(--a2));
+    }
+    .pill{
+      display:none;
+      padding:8px 10px;border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);font-size:13px;
+    }
+    .links{display:flex;gap:6px}
+    .link{
+      padding:10px 12px;border-radius:999px;
+      color:var(--muted);font-weight:600;font-size:14px;
+    }
+    .link:hover{background:rgba(255,255,255,.06);color:#fff}
+
+    @media(min-width:900px){.pill{display:inline-flex}}
+    @media(max-width:899px){.links{display:none}}
+
+    /* HERO */
+    .card{border:1px solid var(--border);background:var(--panel);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{padding:22px;margin-bottom:14px}
+    .heroInner{display:grid;grid-template-columns:1.35fr .65fr;gap:14px}
+    @media(max-width:899px){.heroInner{grid-template-columns:1fr}}
+
+    .kicker{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase}
+    h1{margin:10px 0;font-size:38px}
+    .grad{background:linear-gradient(135deg,var(--a1),var(--a2));-webkit-background-clip:text;color:transparent}
+    .lead{color:var(--muted)}
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .btn{
+      padding:12px 14px;border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      font-weight:700;font-size:14px;
+    }
+    .btn.primary{background:linear-gradient(135deg,rgba(20,99,255,.35),rgba(16,185,129,.22))}
+
+    /* HEADSHOT */
+    .headshotWrap{text-align:center}
+    .headshot{
+      width:160px;height:160px;border-radius:22px;
+      border:1px solid var(--border);overflow:hidden;
+      margin:0 auto;background:rgba(255,255,255,.06);
+    }
+    .headshot img{width:100%;height:100%;object-fit:cover}
+    .fallback{
+      display:flex;align-items:center;justify-content:center;
+      height:100%;font-size:42px;font-weight:800;color:#fff;
     }
 
-    /*====================
-      Print‑specific CSS
-    ====================*/
-    @media print {
-      @page {
-        size: letter portrait;
-        margin: .5in .5in .5in .5in;
-      }
-      body {
-        background: #fff !important;
-        color: #000 !important;
-        font-size: 10pt !important;
-        margin: 0;
-        padding: 0;
-      }
-      /* Reset container margins */
-      .container {
-        max-width: none !important;
-        width: auto !important;
-        margin: 0 auto !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        background: none !important;
-      }
-      /* hide on‑screen header & buttons */
-      header, .headshot, .contact-button, .btn {
-        display: none !important;
-      }
-      h2 {
-        margin: 18px 0 6px !important;
-        page-break-after: avoid;
-      }
-      .job-entry {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-      }
-      p, li {
-        margin: 0 0 6px 0;
-        line-height: 1.4;
-        orphans: 2;
-        widows: 2;
-      }
-      ul {
-        padding-left: 20px;
-      }
-      a::after {
-        content: " (" attr(href) ")";
-        font-size: 0.8em;
-      }
+    /* SECTIONS */
+    section{margin-top:14px}
+    .section{padding:18px}
+    .sectionHead{display:flex;justify-content:space-between;margin-bottom:10px}
+    h2{margin:0;font-size:18px}
+    .tile,.role{
+      padding:14px;border-radius:16px;
+      border:1px solid var(--border);
+      background:var(--panel2);
     }
+    .timeline{display:flex;flex-direction:column;gap:10px}
+    .roleTop{display:flex;justify-content:space-between;flex-wrap:wrap}
+    .meta{color:var(--muted);font-size:13px;font-weight:700}
+    ul{padding-left:18px;color:var(--muted)}
+    li{margin:6px 0}
 
-    /*===============================
-      Print‑header always in DOM
-    ===============================*/
-    #printHeaderInline {
-      display: block;
-      text-align: center;
-      font-size: 11pt;
-      margin: 0 0 12px; /* space below before resume */
-    }
-    /* hide it on screen */
-    @media screen {
-      #printHeaderInline {
-        display: none;
-      }
-    }
-    /* ensure no extra top‑margin */
-    .container {
-      margin-top: 0 !important;
-    }
+    footer{text-align:center;margin-top:22px;color:var(--muted);font-size:13px}
   </style>
-
-
-
-
-  <script>
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('dragstart', e => e.preventDefault());
-  </script>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;">
-        <div style="text-align:center;">
-          <h1 style="margin:0;">Ailyn Gonzalez</h1>
-          <div class="contact">
-            <a href="mailto:ailyn@eleventen.net?subject=Resume%20Inquiry" class="contact-button small">📧 Email Me</a>
-            <a href="https://linkedin.com/in/ailyng" target="_blank" class="contact-button small">🔗 LinkedIn</a>
-          </div>
-          <div style="margin-top:10px;">
-            <button onclick="window.print()" class="contact-button print-button">🖨️ Print Resume</button>
-          </div>
-        </div>
-        <img src="headshot.jpg" alt="Ailyn Gonzalez Headshot" class="headshot">
+<div class="wrap">
+
+  <!-- NAV -->
+  <div class="topbar">
+    <div class="nav">
+      <div class="brand">
+        <div class="mark"></div>
+        <strong>Ailyn Gonzalez</strong>
+        <span class="pill">Infrastructure • Networking • Security • End-User Experience</span>
       </div>
-    </header>
-
-    <div style="margin-top:40px;"></div>
-
-    <section>
-      <h2>Professional Summary</h2>
-      <p>IT leader with 15+ years of experience delivering technology solutions that drive growth, improve operations, and strengthen security. Builds and leads high‑performing teams, aligns IT with business goals, and manages complex initiatives like M&A integrations. Brings hands‑on experience in energy, oil & gas, banking, hospitality, and MSP environments, with a focus on delivering practical results that make a difference.</p>
-    </section>
-
-    <section>
-      <h2>Experience</h2>
-
-      <div class="job-entry">
-        <div class="job-title">ITSM Manager</div>
-        <div class="job-details">Parkland Corp – Dec 2024 to Present</div>
-        <ul>
-          <li>Lead IT Service Management (ITSM) strategy, aligning ITIL best practices across Incident, Change, and Problem Management.</li>
-          <li>Manage ServiceNow operations and development, driving automation and operational efficiency.</li>
-          <li>Partner with business units, senior leadership, and the outsourced ITO provider to align IT services with organizational goals.</li>
-          <li>Oversee SLA management, reporting, and continuous service improvement initiatives in collaboration with internal teams and external vendors.</li>
-          <li>Lead and mentor a high‑performing ITSM team, promoting innovation and professional growth.</li>
-        </ul>
+      <div class="links">
+        <a class="link" href="#summary">Summary</a>
+        <a class="link" href="#experience">Experience</a>
+        <a class="link" href="#skills">Skills</a>
+        <a class="link" href="#certs">Certifications</a>
+        <a class="link" href="#education">Education</a>
       </div>
-
-      <div class="job-entry">
-        <div class="job-title">Team Lead, Identity & Access Management (IAM)</div>
-        <div class="job-details">Parkland Corp – June 2023 to Dec 2024</div>
-        <ul>
-          <li>Directed identity lifecycle management for 10,000+ user accounts across hybrid cloud/on‑prem environments.</li>
-          <li>Administered and maintained Okta SSO, including app provisioning and role‑based access controls.</li>
-          <li>Provided hands‑on leadership and mentorship to the IAM team, driving operational excellence.</li>
-          <li>Ensured compliance with security policies and access governance standards across all identity platforms.</li>
-        </ul>
-      </div>
-
-      <div class="job-entry">
-        <div class="job-title">IT Manager, Southeast Region</div>
-        <div class="job-details">Parkland USA – June 2021 to June 2023</div>
-        <ul>
-          <li>Oversaw IT infrastructure and operations across 8 branch offices, 94 retail sites, and 10 cardlock facilities.</li>
-          <li>Acted as primary technical advisor to senior leadership, delivering tailored solutions and strategic recommendations.</li>
-          <li>Managed third‑party vendors and negotiated service contracts to optimize performance and cost.</li>
-          <li>Led deskside support teams, providing mentorship, leadership, and escalation support.</li>
-        </ul>
-      </div>
-
-      <div class="job-entry">
-        <div class="job-title">Network Administrator</div>
-        <div class="job-details">Tropic Oil Company / Parkland USA – April 2017 to June 2021</div>
-        <ul>
-          <li>Oversaw infrastructure for 4 regional offices, including server support, Microsoft 365 administration, and end‑user services.</li>
-          <li>Led IT planning, deployment, and integration for Parkland’s acquisition of Tropic Oil and other regional M&A transitions.</li>
-          <li>Procured and configured IT hardware, networking gear, and licensing across locations.</li>
-        </ul>
-      </div>
-
-      <div class="job-entry">
-        <div class="job-title">Network Administrator</div>
-        <div class="job-details">Tropic Oil Company – Sept 2014 to Sept 2015</div>
-        <ul>
-          <li>Maintained core network infrastructure and resolved connectivity and hardware issues across branch locations.</li>
-          <li>Provided end‑user support and performed routine systems administration.</li>
-          <li>Managed IT onboarding, including provisioning and configuring equipment for new staff.</li>
-        </ul>
-      </div>
-
-      <div class="job-entry">
-        <div class="job-title">Previous Roles (2005–2014)</div>
-        <div class="job-details">Various South Florida Companies - Desktop Support, System Administrator, and Network Administrator across multiple industries including education, hospitality, commodities trading, and corporate travel.</div>
-        
-      </div>
-
-    </section>
-
-    <section>
-      <h2>Technical Skills</h2>
-      <ul>
-        <li><strong>Platforms & Systems:</strong> Windows Server (all versions), Hyper‑V, VMware ESXi, Active Directory, Microsoft 365 Admin, AWS, Okta, Zscaler, PowerShell</li>
-        <li><strong>Networking & Security:</strong> Cisco Meraki, Ubiquiti, Fortinet, SonicWall, WatchGuard, Aruba, Cellular DAS, DHCP/DNS, SEPM, Firewall Policy Management</li>
-        <li><strong>Endpoint Management:</strong> Apple DEP, Samsung Knox, MaaS360 MDM, PrinterLogic, GoToAssist, Bomgar</li>
-        <li><strong>Backup & Recovery:</strong> Veeam, Acronis, Datto, Symantec Backup Exec</li>
-        <li><strong>ITSM & Tools:</strong> ConnectWise, ServiceNow, ADAudit Plus, AD Manager, Lansweeper</li>
-        <li><strong>Other Tools:</strong> Microsoft Office Suite, Remote Support Tools, Ticketing Systems, BitTitan</li>
-      </ul>
-    </section>
-
-    <!-- New Certifications Section -->
-    <section>
-      <h2>Certifications</h2>
-      <ul class="cert-list">
-        <li>
-          <strong>CompTIA Network+</strong> (N10-009), 2025 —
-          <a href="https://www.credly.com/badges/32f9db9d-5304-4ea8-86d8-ffa71082f618/public_url" target="_blank" rel="noopener">Digital Badge</a>
-        </li>
-        <!-- Add more as you earn them:
-        <li>
-          <strong>CompTIA Security+</strong> (SY0-701), 2024 —
-          <a href="YOUR-SECURITY-PLUS-CREDLY-LINK" target="_blank" rel="noopener">Digital Badge</a>
-        </li>
-        -->
-      </ul>
-    </section>
-
-    <section>
-      <h2>Education</h2>
-      <p>Bachelor of Science – Information Technology, Miami, FL</p>
-    </section>
+    </div>
   </div>
+
+  <!-- HERO -->
+  <div class="card hero">
+    <div class="heroInner">
+      <div>
+        <div class="kicker">IT Leader • 20+ Years</div>
+        <h1>Ailyn Gonzalez<br>
+          <span class="grad">Infrastructure • Networking • Security • End-User Experience</span>
+        </h1>
+        <p class="lead">
+          IT Services Manager with 20+ years of experience overseeing enterprise infrastructure,
+          networking, security, help desk operations, and vendor management. Known for delivering
+          reliable, secure systems with a white-glove end-user experience.
+        </p>
+        <div class="actions">
+          <a class="btn primary" href="mailto:ailyn@eleventen.net">Email Me</a>
+          <a class="btn" href="https://linkedin.com/in/ailyng" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="headshotWrap">
+        <div class="headshot">
+          <img src="headshot.jpg" alt="Ailyn Gonzalez" onerror="this.style.display='none'">
+          <div class="fallback">AG</div>
+        </div>
+        <p class="meta">IT Services Manager<br>Pilot Thomas Logistics</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <section id="summary" class="card section">
+    <div class="sectionHead"><h2>Professional Summary</h2></div>
+    <div class="tile">
+      IT leader with deep hands-on and leadership experience across infrastructure, networking,
+      security, identity, and end-user services. Proven ability to manage vendors, lead teams,
+      and align IT operations with business objectives in complex, multi-site environments.
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="card section">
+    <div class="sectionHead"><h2>Experience</h2></div>
+    <div class="timeline">
+
+      <div class="role">
+        <div class="roleTop">
+          <strong>IT Services Manager — Pilot Thomas Logistics</strong>
+          <span class="meta">Oct 2025 – Present</span>
+        </div>
+        <ul>
+          <li>Oversee enterprise networking, infrastructure, security, and help desk operations.</li>
+          <li>Manage IT vendors and service providers, ensuring consistent service quality and accountability.</li>
+          <li>Align IT services and end-user experience with business objectives.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="roleTop">
+          <strong>ITSM Manager — Parkland Corp</strong>
+          <span class="meta">Dec 2024 – Oct 2025</span>
+        </div>
+        <ul>
+          <li>Led ITSM strategy and ServiceNow operations.</li>
+          <li>Drove automation, reporting, and continuous improvement.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="roleTop">
+          <strong>Team Lead, Identity & Access Management — Parkland Corp</strong>
+          <span class="meta">Jun 2023 – Dec 2024</span>
+        </div>
+        <ul>
+          <li>Directed identity lifecycle management for 10,000+ users.</li>
+          <li>Administered Okta SSO and access governance.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="roleTop">
+          <strong>IT Manager, Southeast Region — Parkland USA</strong>
+          <span class="meta">Jun 2021 – Jun 2023</span>
+        </div>
+        <ul>
+          <li>Oversaw IT operations across 100+ locations.</li>
+          <li>Managed vendors, budgets, and regional support teams.</li>
+        </ul>
+      </div>
+
+      <div class="role">
+        <div class="roleTop">
+          <strong>Previous Roles — Various South Florida Companies</strong>
+          <span class="meta">2005 – 2014</span>
+        </div>
+        <p style="margin:10px 0 0;color:var(--muted)">
+          Desktop Support, System Administrator, and Network Administrator roles across education,
+          hospitality, commodities trading, and corporate travel industries.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="card section">
+    <div class="sectionHead"><h2>Technical Skills</h2></div>
+    <div class="timeline">
+
+      <div class="tile"><strong>Cloud & Identity</strong><p>Azure, Entra ID (Azure AD), Okta, SSO, MFA, Conditional Access, Zero Trust, PIM</p></div>
+      <div class="tile"><strong>Endpoint & Device Management</strong><p>Intune, Apple DEP, Samsung Knox, MaaS360, BitLocker, Compliance & Patch Management</p></div>
+      <div class="tile"><strong>Infrastructure</strong><p>Windows Server, Active Directory, Hyper-V, VMware ESXi, AWS</p></div>
+      <div class="tile"><strong>Networking</strong><p>Meraki, Fortinet, Ubiquiti, Aruba, SD-WAN, VPN, DHCP/DNS, HA/Failover</p></div>
+      <div class="tile"><strong>Security & Governance</strong><p>Email Security, DLP, Access Reviews, Audit Support, Vendor Risk Management</p></div>
+      <div class="tile"><strong>Microsoft 365</strong><p>Exchange Online, Teams, SharePoint, OneDrive, Retention & Compliance</p></div>
+      <div class="tile"><strong>Automation</strong><p>PowerShell (user lifecycle, reporting, administration), Workflow Automation</p></div>
+      <div class="tile"><strong>ITSM & Monitoring</strong><p>ServiceNow, Jira, ConnectWise, Monitoring & Alerting</p></div>
+      <div class="tile"><strong>M&A & Integrations</strong><p>Tenant Consolidations, Identity & Email Migrations, Infrastructure Transitions</p></div>
+      <div class="tile"><strong>End-User Operations</strong><p>Help Desk Leadership, White-Glove Support, Outsourced IT Oversight</p></div>
+
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs" class="card section">
+    <div class="sectionHead"><h2>Certifications</h2></div>
+    <div class="tile">
+      <strong>CompTIA Network+</strong> (2025) —
+      <a href="https://www.credly.com/badges/32f9db9d-5304-4ea8-86d8-ffa71082f618/public_url" target="_blank">Digital Badge</a>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="card section">
+    <div class="sectionHead"><h2>Education</h2></div>
+    <div class="tile">
+      Bachelor of Science — Information Technology, Miami, FL
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Ailyn Gonzalez
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
-<script>
-  const cleanTitle = "Ailyn Gonzalez";
-  const printExtras = " | ailyn@eleventen.net | https://linkedin.com/in/ailyng";
-
-  // set the tab to just your name
-  document.title = cleanTitle;
-
-  // right before the print dialog opens:
-  window.onbeforeprint = () => {
-    document.title = cleanTitle + printExtras;
-  };
-  // and after it closes, revert back:
-  window.onafterprint = () => {
-    document.title = cleanTitle;
-  };
-</script>
-
-
-
