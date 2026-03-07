@@ -2,460 +2,609 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="description" content="Ailyn Gonzalez — IT Services Manager specializing in infrastructure, networking, security, and end-user experience." />
-  <title>Ailyn Gonzalez</title>
+  <title>Ailyn Gonzalez — IT Services Manager</title>
 
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Security headers via meta -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                 font-src https://fonts.gstatic.com;
+                 img-src 'self' data:;
+                 script-src 'self' 'unsafe-inline';
+                 connect-src 'self';
+                 frame-ancestors 'none';
+                 base-uri 'self';
+                 form-action 'self' mailto:;" />
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
-    :root{
-      --bg:#070B14;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.04);
-      --border:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.72);
-      --shadow:0 18px 60px rgba(0,0,0,.45);
-      --radius:18px;
-      --a1:#1463FF;
-      --a2:#10B981;
-      --max:1120px;
-      --pad: clamp(14px, 2.4vw, 22px);
+    /* ========== RESET & VARIABLES ========== */
+    :root {
+      --bg: #050a12;
+      --surface: rgba(255,255,255,.04);
+      --surface-hover: rgba(255,255,255,.07);
+      --border: rgba(255,255,255,.08);
+      --border-hover: rgba(255,255,255,.16);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.60);
+      --accent: #3b82f6;
+      --accent2: #10b981;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --max: 960px;
+      --gap: 12px;
+      --section-gap: 16px;
+      --pad: 16px;
     }
 
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{
-      margin:0;
-      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(900px 600px at 12% 10%, rgba(20,99,255,.18), transparent 55%),
-        radial-gradient(900px 600px at 90% 20%, rgba(16,185,129,.16), transparent 60%),
-        var(--bg);
-      line-height:1.55;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+      min-height: 100dvh;
     }
 
-    a{ color:inherit; text-decoration:none }
-    p{ margin:0 }
-    ::selection{ background: rgba(20,99,255,.35); }
-
-    .wrap{
-      max-width:var(--max);
-      margin:0 auto;
-      padding: 14px 14px 72px;
+    /* Subtle ambient glow */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 15% 8%, rgba(59,130,246,.12), transparent 60%),
+        radial-gradient(ellipse 500px 350px at 85% 15%, rgba(16,185,129,.08), transparent 55%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* ---------- Cards / Sections ---------- */
-    .card{
-      border:1px solid var(--border);
-      background:var(--panel);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+    ::selection { background: rgba(59,130,246,.30); }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    button { font: inherit; color: inherit; border: none; background: none; cursor: pointer; }
+
+    /* ========== LAYOUT ========== */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 12px 48px;
     }
 
-    section{ margin-top: 14px; }
-    .section{ padding: var(--pad); }
-
-    .sectionHead{
-      display:flex;
-      justify-content:space-between;
-      align-items:baseline;
-      gap:12px;
-      margin-bottom: 10px;
-    }
-    h2{
-      margin:0;
-      font-size: clamp(16px, 2.4vw, 18px);
-      letter-spacing: -.01em;
-    }
-    .hint{
-      color:var(--muted);
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .tile, .role{
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: var(--panel2);
-    }
-
-    /* ---------- Top Nav (mobile-first) ---------- */
-    .topbar{
+    /* ========== NAV ========== */
+    .topbar {
       position: sticky;
-      top: 10px;
-      z-index: 50;
-      margin: 8px 0 14px;
+      top: 8px;
+      z-index: 100;
+      margin-bottom: var(--section-gap);
     }
 
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      padding: 10px 12px;
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px 8px 14px;
       border-radius: 999px;
-      background: rgba(5,8,15,.55);
-      backdrop-filter: blur(10px);
-      border:1px solid var(--border);
-      box-shadow: 0 14px 45px rgba(0,0,0,.30);
+      background: rgba(5,10,18,.75);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      border: 1px solid var(--border);
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
     }
-    .mark{
-      width:12px;height:12px;border-radius:999px;
-      background:linear-gradient(135deg,var(--a1),var(--a2));
-      flex: 0 0 auto;
+
+    .mark {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      flex-shrink: 0;
     }
-    .brandText{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      min-width:0;
-    }
-    .brandText strong{
-      font-weight: 850;
+
+    .brand-name {
+      font-weight: 800;
       font-size: 14px;
-      letter-spacing: .2px;
+      letter-spacing: -.01em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 56vw;
     }
 
-    /* ✅ 2-line clamp so it doesn't cut off on portrait */
-    .pill{
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;    /* show up to 2 lines */
-      overflow: hidden;
-
-      color: rgba(255,255,255,.70);
-      font-size: 12.5px;
-      font-weight: 650;
-      line-height: 1.25;
-
-      white-space: normal;      /* allow wrapping */
-      text-overflow: clip;      /* no ellipsis */
-      max-width: 68vw;          /* keeps it from taking the whole bar */
+    .nav-links {
+      display: none;
+      gap: 2px;
+      align-items: center;
     }
 
-    .links{
-      display:none;
-      gap:6px;
-      align-items:center;
-    }
-    .link{
-      padding:10px 12px;
-      border-radius:999px;
-      color:var(--muted);
-      font-weight:700;
-      font-size:14px;
-      border: 1px solid transparent;
-    }
-    .link:hover{
-      background: rgba(255,255,255,.06);
-      color:#fff;
-      border-color: rgba(255,255,255,.10);
-    }
-
-    .menuBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width: 44px;
-      height: 44px;
+    .nav-link {
+      padding: 8px 12px;
       border-radius: 999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      cursor:pointer;
-      transition: transform .08s ease, background .2s ease;
-      flex: 0 0 auto;
-    }
-    .menuBtn:active{ transform: translateY(1px); }
-    .menuBtn:hover{ background: rgba(255,255,255,.07); }
-
-    .menuIcon{
-      width: 18px; height: 18px; position: relative;
-    }
-    .menuIcon span{
-      position:absolute; left:0; right:0;
-      height:2px; border-radius:2px;
-      background: rgba(255,255,255,.86);
-      transition: transform .2s ease, top .2s ease, opacity .2s ease;
-    }
-    .menuIcon span:nth-child(1){ top:4px; }
-    .menuIcon span:nth-child(2){ top:8px; }
-    .menuIcon span:nth-child(3){ top:12px; }
-
-    .mobileMenu{
-      display:none;
-      margin-top:10px;
-      border-radius: 16px;
-      border:1px solid var(--border);
-      background: rgba(5,8,15,.70);
-      backdrop-filter: blur(10px);
-      overflow:hidden;
-      box-shadow: 0 18px 55px rgba(0,0,0,.35);
-    }
-    .mobileMenu a{
-      display:block;
-      padding: 14px 14px;
       color: var(--muted);
-      font-weight: 750;
-      border-top: 1px solid rgba(255,255,255,.08);
+      font-weight: 600;
+      font-size: 13px;
+      transition: color .15s, background .15s;
     }
-    .mobileMenu a:first-child{ border-top: none; }
-    .mobileMenu a:hover{
-      background: rgba(255,255,255,.05);
+    .nav-link:hover, .nav-link:focus-visible {
       color: #fff;
+      background: rgba(255,255,255,.06);
     }
 
-    .menuOpen .mobileMenu{ display:block; }
-    .menuOpen .menuIcon span:nth-child(1){ top:8px; transform: rotate(45deg); }
-    .menuOpen .menuIcon span:nth-child(2){ opacity:0; }
-    .menuOpen .menuIcon span:nth-child(3){ top:8px; transform: rotate(-45deg); }
-
-    /* Desktop nav */
-    @media (min-width: 980px){
-      .menuBtn{ display:none; }
-      .links{ display:flex; }
-      .pill{ display:none; } /* links show on desktop */
-      .brandText strong{ max-width: 260px; }
+    /* Hamburger */
+    .menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+      transition: background .15s;
     }
+    .menu-btn:hover { background: var(--surface-hover); }
 
-    /* ---------- Hero ---------- */
-    .hero{ padding: var(--pad); }
-
-    .heroGrid{
-      display:grid;
-      gap: 14px;
-      grid-template-columns: 1fr;
-      align-items: start;
+    .menu-icon {
+      width: 16px; height: 14px;
+      position: relative;
     }
-
-    .heroMain{
-      padding: 16px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.12);
+    .menu-icon span {
+      position: absolute;
+      left: 0; right: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: rgba(255,255,255,.8);
+      transition: transform .2s ease, top .2s ease, opacity .15s ease;
     }
+    .menu-icon span:nth-child(1) { top: 0; }
+    .menu-icon span:nth-child(2) { top: 6px; }
+    .menu-icon span:nth-child(3) { top: 12px; }
 
-    .kicker{
+    /* Mobile dropdown */
+    .mobile-menu {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows .25s ease;
+      margin-top: 8px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: rgba(5,10,18,.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      overflow: hidden;
+    }
+    .mobile-menu-inner {
+      overflow: hidden;
+    }
+    .mobile-menu a {
+      display: block;
+      padding: 14px 16px;
       color: var(--muted);
-      font-size: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      transition: color .15s, background .15s;
+    }
+    .mobile-menu a:first-child { border-top: none; }
+    .mobile-menu a:hover, .mobile-menu a:focus-visible {
+      color: #fff;
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Menu open state */
+    .menu-open .mobile-menu { grid-template-rows: 1fr; }
+    .menu-open .menu-icon span:nth-child(1) { top: 6px; transform: rotate(45deg); }
+    .menu-open .menu-icon span:nth-child(2) { opacity: 0; }
+    .menu-open .menu-icon span:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
+    @media (min-width: 768px) {
+      .menu-btn { display: none; }
+      .mobile-menu { display: none; }
+      .nav-links { display: flex; }
+    }
+
+    /* ========== SECTION SHARED ========== */
+    .card {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius);
+    }
+
+    section {
+      margin-top: var(--section-gap);
+    }
+
+    .section-inner {
+      padding: var(--pad);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: var(--gap);
+    }
+
+    .section-header h2 {
+      font-size: 16px;
       font-weight: 800;
-      letter-spacing: .08em;
+      letter-spacing: -.01em;
+    }
+
+    .section-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      background: rgba(59,130,246,.1);
+      padding: 3px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      letter-spacing: .03em;
       text-transform: uppercase;
     }
 
-    h1{
-      margin: 10px 0 10px;
-      font-size: clamp(26px, 6.5vw, 40px);
-      line-height: 1.10;
-      letter-spacing: -.02em;
+    /* ========== HERO ========== */
+    .hero {
+      padding: var(--pad);
     }
 
-    .grad{
-      background:linear-gradient(135deg,var(--a1),var(--a2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
+    .hero-grid {
+      display: grid;
+      gap: var(--gap);
     }
 
-    .lead{
-      color: var(--muted);
-      font-size: clamp(14px, 2.5vw, 16px);
-      max-width: 75ch;
+    .hero-main {
+      padding: 20px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.15);
     }
 
-    .actions{
-      display:flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
+    .kicker {
+      display: inline-block;
+      font-size: 11px;
       font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(59,130,246,.08);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(24px, 6vw, 36px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -.025em;
+      margin-bottom: 12px;
+    }
+
+    .grad {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
       font-size: 14px;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      cursor:pointer;
-      user-select:none;
+      line-height: 1.65;
+      max-width: 60ch;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 11px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-weight: 700;
+      font-size: 13px;
+      transition: background .15s, border-color .15s, transform .08s;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
       width: 100%;
     }
-    .btn:hover{ background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.20); }
-    .btn:active{ transform: translateY(1px); }
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(20,99,255,.36), rgba(16,185,129,.22));
-      border-color: rgba(20,99,255,.30);
+    .btn:hover { background: var(--surface-hover); border-color: var(--border-hover); }
+    .btn:active { transform: scale(.98); }
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(59,130,246,.25), rgba(16,185,129,.15));
+      border-color: rgba(59,130,246,.25);
+      color: #fff;
+    }
+    .btn.primary:hover {
+      background: linear-gradient(135deg, rgba(59,130,246,.35), rgba(16,185,129,.22));
     }
 
-    @media (min-width: 520px){
-      .btn{ width: auto; }
+    /* Inline SVG icons for buttons */
+    .btn svg {
+      width: 14px; height: 14px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .heroSide{
-      display:grid;
-      gap: 10px;
+    @media (min-width: 480px) {
+      .btn { width: auto; }
     }
 
-    .mini{
+    /* Hero sidebar */
+    .hero-side {
+      display: grid;
+      gap: 8px;
+    }
+
+    .mini-card {
       padding: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: var(--panel2);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
     }
-    .mini h3{
-      margin:0 0 6px;
-      font-size: 12px;
+
+    .mini-card h3 {
+      font-size: 10px;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: .08em;
-      color: rgba(255,255,255,.58);
-    }
-    .mini p{
-      margin:0;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 14px;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.40);
+      margin-bottom: 6px;
     }
 
-    .headshotWrap{
-      display:flex;
-      align-items:center;
-      gap: 12px;
+    .mini-card p {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Headshot */
+    .headshot-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       padding: 14px;
     }
 
-    .headshot{
-      width: 92px;
-      height: 92px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.14);
-      overflow:hidden;
-      background: rgba(255,255,255,.06);
-      flex: 0 0 auto;
+    .headshot {
+      width: 72px; height: 72px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--surface);
+      flex-shrink: 0;
     }
-    .headshot img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+    .headshot img {
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
-    .fallback{
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .headshot-fallback {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-weight: 900;
-      color:#fff;
-      letter-spacing: .06em;
-      background:
-        radial-gradient(120px 120px at 20% 20%, rgba(20,99,255,.35), transparent 60%),
-        radial-gradient(120px 120px at 80% 30%, rgba(16,185,129,.28), transparent 60%),
-        rgba(0,0,0,.18);
+      font-size: 18px;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(59,130,246,.3), rgba(16,185,129,.25));
     }
-    .roleMini{
-      display:flex;
-      flex-direction:column;
-      gap: 2px;
-      min-width:0;
-    }
-    .roleMini strong{ font-size: 14px; }
-    .roleMini span{ color: var(--muted); font-size: 13px; font-weight: 650; }
 
-    @media (min-width: 980px){
-      .heroGrid{
-        grid-template-columns: 1.35fr .65fr;
+    .role-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .role-info strong {
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .role-info span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1.4fr .6fr;
         align-items: stretch;
       }
-      .headshot{
-        width: 120px;
-        height: 120px;
-      }
+      .headshot { width: 88px; height: 88px; }
     }
 
-    /* ---------- Experience ---------- */
-    .timeline{
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
+    /* ========== EXPERIENCE ========== */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
-    .roleTop{
-      display:flex;
-      justify-content:space-between;
-      gap: 10px;
+
+    .role {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      transition: border-color .2s;
+    }
+    .role:hover { border-color: var(--border-hover); }
+
+    .role-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
       flex-wrap: wrap;
       align-items: flex-start;
     }
-    .meta{
+
+    .role-title {
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .role-date {
+      font-size: 12px;
+      font-weight: 700;
       color: var(--muted);
+      white-space: nowrap;
+      background: rgba(255,255,255,.04);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .role ul {
+      margin-top: 8px;
+      padding-left: 16px;
+      list-style: disc;
+    }
+
+    .role li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      margin: 4px 0;
+    }
+
+    .role .muted-text {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    /* ========== SKILLS ========== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .skill-tile {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      transition: border-color .2s, background .2s;
+    }
+    .skill-tile:hover {
+      border-color: var(--border-hover);
+      background: rgba(255,255,255,.04);
+    }
+
+    .skill-tile strong {
+      display: block;
       font-size: 13px;
       font-weight: 800;
-      white-space: nowrap;
+      margin-bottom: 4px;
     }
-    ul{
-      margin: 10px 0 0;
-      padding-left: 18px;
+
+    .skill-tile p {
       color: var(--muted);
-      font-size: 14px;
-    }
-    li{ margin: 6px 0; }
-
-    /* ---------- Skills (mobile grid) ---------- */
-    .skillsGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .skillsGrid .tile strong{
-      display:block;
-      margin-bottom: 6px;
-    }
-    .skillsGrid .tile p{
-      color: var(--muted);
-      font-size: 14px;
-      margin:0;
-    }
-
-    @media (min-width: 740px){
-      .skillsGrid{
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    @media (min-width: 1100px){
-      .skillsGrid{
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-    }
-
-    footer{
-      margin-top: 22px;
-      text-align:center;
-      color: rgba(255,255,255,.60);
       font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media (min-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 768px) {
+      .skills-grid { grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    /* ========== CERTS / EDUCATION ========== */
+    .info-tile {
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .info-tile a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(59,130,246,.4);
+      transition: text-decoration-color .15s;
+    }
+    .info-tile a:hover {
+      text-decoration-color: var(--accent);
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      margin-top: 32px;
+      padding: 16px;
+      text-align: center;
+      color: rgba(255,255,255,.35);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    /* ========== FADE-IN ANIMATION ========== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .4s ease, transform .4s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== REDUCED MOTION ========== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .fade-in { opacity: 1; transform: none; }
+    }
+
+    /* ========== SAFE AREA (notch devices) ========== */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .wrap {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-bottom: max(48px, env(safe-area-inset-bottom));
+      }
     }
   </style>
 </head>
@@ -465,50 +614,46 @@
 
   <!-- NAV -->
   <div class="topbar">
-    <div class="nav" id="nav">
+    <nav class="nav" id="nav" aria-label="Primary navigation">
       <div class="brand">
-        <div class="mark"></div>
-        <div class="brandText">
-          <strong>Ailyn Gonzalez</strong>
-          <span class="pill">Infrastructure • Networking • Security • End-User Experience</span>
-        </div>
+        <div class="mark" aria-hidden="true"></div>
+        <span class="brand-name">Ailyn Gonzalez</span>
       </div>
 
-      <!-- Desktop links -->
-      <div class="links" aria-label="Primary navigation">
-        <a class="link" href="#summary">Summary</a>
-        <a class="link" href="#experience">Experience</a>
-        <a class="link" href="#skills">Skills</a>
-        <a class="link" href="#certs">Certifications</a>
-        <a class="link" href="#education">Education</a>
+      <div class="nav-links">
+        <a class="nav-link" href="#summary">Summary</a>
+        <a class="nav-link" href="#experience">Experience</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#certs">Certifications</a>
+        <a class="nav-link" href="#education">Education</a>
       </div>
 
-      <!-- Mobile hamburger -->
-      <button class="menuBtn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-        <div class="menuIcon" aria-hidden="true">
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+        <div class="menu-icon" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
       </button>
-    </div>
+    </nav>
 
-    <!-- Mobile dropdown -->
-    <div class="mobileMenu" id="mobileMenu" aria-label="Mobile menu">
-      <a href="#summary">Summary</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#certs">Certifications</a>
-      <a href="#education">Education</a>
+    <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+      <div class="mobile-menu-inner">
+        <a href="#summary">Summary</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#certs">Certifications</a>
+        <a href="#education">Education</a>
+      </div>
     </div>
   </div>
 
   <!-- HERO -->
-  <main class="card hero">
-    <div class="heroGrid">
-      <div class="heroMain">
-        <div class="kicker">IT Leader • 20+ Years</div>
+  <main class="card hero fade-in">
+    <div class="hero-grid">
+      <div class="hero-main">
+        <div class="kicker">IT Leader &bull; 20+ Years</div>
         <h1>
           Ailyn Gonzalez<br>
-          <span class="grad">Infrastructure • Networking • Security • End-User Experience</span>
+          <span class="grad">Infrastructure &bull; Networking &bull; Security</span>
         </h1>
         <p class="lead">
           IT Services Manager with 20+ years of experience overseeing enterprise infrastructure,
@@ -516,44 +661,50 @@
           reliable, secure systems with a white-glove end-user experience.
         </p>
         <div class="actions">
-          <a class="btn primary" href="mailto:ailyn@eleventen.net">Email Me</a>
-          <a class="btn" href="https://linkedin.com/in/ailyng" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn primary" href="mailto:ailyn@eleventen.net" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Me
+          </a>
+          <a class="btn" href="https://linkedin.com/in/ailyng" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
         </div>
       </div>
 
-      <aside class="heroSide">
-        <div class="mini headshotWrap">
-          <div class="headshot" aria-label="Headshot">
-            <img src="headshot.jpg" alt="Ailyn Gonzalez headshot" onerror="this.style.display='none'">
-            <div class="fallback">AG</div>
+      <aside class="hero-side">
+        <div class="mini-card headshot-row">
+          <div class="headshot" aria-label="Headshot of Ailyn Gonzalez">
+            <img id="headshotImg" src="headshot.jpg" alt="Ailyn Gonzalez" loading="eager" />
+            <div class="headshot-fallback" id="headshotFallback" style="display:none;">AG</div>
           </div>
-          <div class="roleMini">
+          <div class="role-info">
             <strong>IT Services Manager</strong>
             <span>Pilot Thomas Logistics</span>
-            <span>Oct 2025 – Present</span>
+            <span>Oct 2025 &ndash; Present</span>
           </div>
         </div>
 
-        <div class="mini">
+        <div class="mini-card">
           <h3>Focus</h3>
-          <p>Network • Infrastructure • Security • Help Desk</p>
+          <p>Network &bull; Infrastructure &bull; Security &bull; Help Desk</p>
         </div>
 
-        <div class="mini">
+        <div class="mini-card">
           <h3>Core Stack</h3>
-          <p>Azure • Entra ID • Intune • Microsoft 365 • PowerShell</p>
+          <p>Azure &bull; Entra ID &bull; Intune &bull; Microsoft 365 &bull; PowerShell</p>
         </div>
       </aside>
     </div>
   </main>
 
   <!-- SUMMARY -->
-  <section id="summary" class="card section">
-    <div class="sectionHead">
+  <section id="summary" class="card section-inner fade-in">
+    <div class="section-header">
       <h2>Professional Summary</h2>
-      <span class="hint">Business-aligned IT leadership</span>
+      <span class="section-badge">Overview</span>
     </div>
-    <div class="tile">
+    <div class="info-tile">
       IT leader with deep hands-on and leadership experience across infrastructure, networking,
       security, identity, and end-user services. Proven ability to manage vendors, lead teams,
       and align IT operations with business objectives in complex, multi-site environments.
@@ -561,17 +712,17 @@
   </section>
 
   <!-- EXPERIENCE -->
-  <section id="experience" class="card section">
-    <div class="sectionHead">
+  <section id="experience" class="card section-inner fade-in">
+    <div class="section-header">
       <h2>Experience</h2>
-      <span class="hint">Career progression</span>
+      <span class="section-badge">Career</span>
     </div>
 
     <div class="timeline">
       <div class="role">
-        <div class="roleTop">
-          <strong>IT Services Manager — Pilot Thomas Logistics</strong>
-          <span class="meta">Oct 2025 – Present</span>
+        <div class="role-top">
+          <strong class="role-title">IT Services Manager &mdash; Pilot Thomas Logistics</strong>
+          <span class="role-date">Oct 2025 &ndash; Present</span>
         </div>
         <ul>
           <li>Oversee enterprise networking, infrastructure, security, and help desk operations.</li>
@@ -581,9 +732,9 @@
       </div>
 
       <div class="role">
-        <div class="roleTop">
-          <strong>ITSM Manager — Parkland Corp</strong>
-          <span class="meta">Dec 2024 – Oct 2025</span>
+        <div class="role-top">
+          <strong class="role-title">ITSM Manager &mdash; Parkland Corp</strong>
+          <span class="role-date">Dec 2024 &ndash; Oct 2025</span>
         </div>
         <ul>
           <li>Led ITSM strategy and ServiceNow operations.</li>
@@ -592,9 +743,9 @@
       </div>
 
       <div class="role">
-        <div class="roleTop">
-          <strong>Team Lead, Identity & Access Management — Parkland Corp</strong>
-          <span class="meta">Jun 2023 – Dec 2024</span>
+        <div class="role-top">
+          <strong class="role-title">Team Lead, Identity &amp; Access Management &mdash; Parkland Corp</strong>
+          <span class="role-date">Jun 2023 &ndash; Dec 2024</span>
         </div>
         <ul>
           <li>Directed identity lifecycle management for 10,000+ users.</li>
@@ -603,9 +754,9 @@
       </div>
 
       <div class="role">
-        <div class="roleTop">
-          <strong>IT Manager, Southeast Region — Parkland USA</strong>
-          <span class="meta">Jun 2021 – Jun 2023</span>
+        <div class="role-top">
+          <strong class="role-title">IT Manager, Southeast Region &mdash; Parkland USA</strong>
+          <span class="role-date">Jun 2021 &ndash; Jun 2023</span>
         </div>
         <ul>
           <li>Oversaw IT operations across 100+ locations.</li>
@@ -614,11 +765,11 @@
       </div>
 
       <div class="role">
-        <div class="roleTop">
-          <strong>Previous Roles — Various South Florida Companies</strong>
-          <span class="meta">2005 – 2014</span>
+        <div class="role-top">
+          <strong class="role-title">Previous Roles &mdash; Various South Florida Companies</strong>
+          <span class="role-date">2005 &ndash; 2014</span>
         </div>
-        <p style="color:var(--muted);margin-top:10px;font-size:14px">
+        <p class="muted-text">
           Desktop Support, System Administrator, and Network Administrator roles across education,
           hospitality, commodities trading, and corporate travel industries.
         </p>
@@ -627,50 +778,50 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="card section">
-    <div class="sectionHead">
+  <section id="skills" class="card section-inner fade-in">
+    <div class="section-header">
       <h2>Technical Skills</h2>
-      <span class="hint">Expanded coverage</span>
+      <span class="section-badge">Expertise</span>
     </div>
 
-    <div class="skillsGrid">
-      <div class="tile">
-        <strong>Cloud & Identity</strong>
-        <p>Azure, Entra ID (Azure AD), Okta, SSO, MFA, Conditional Access, Zero Trust, PIM</p>
+    <div class="skills-grid">
+      <div class="skill-tile">
+        <strong>Cloud &amp; Identity</strong>
+        <p>Azure, Entra ID, Okta, SSO, MFA, Conditional Access, Zero Trust, PIM</p>
       </div>
-      <div class="tile">
-        <strong>Endpoint & Device Management</strong>
-        <p>Intune, Apple DEP, Samsung Knox, MaaS360, BitLocker, compliance & patch management</p>
+      <div class="skill-tile">
+        <strong>Endpoint Management</strong>
+        <p>Intune, Apple DEP, Samsung Knox, MaaS360, BitLocker, compliance &amp; patching</p>
       </div>
-      <div class="tile">
+      <div class="skill-tile">
         <strong>Infrastructure</strong>
         <p>Windows Server, Active Directory, Hyper-V, VMware ESXi, AWS</p>
       </div>
-      <div class="tile">
+      <div class="skill-tile">
         <strong>Networking</strong>
         <p>Meraki, Fortinet, Ubiquiti, Aruba, SD-WAN, VPN, DHCP/DNS, HA/failover</p>
       </div>
-      <div class="tile">
-        <strong>Security & Governance</strong>
+      <div class="skill-tile">
+        <strong>Security &amp; Governance</strong>
         <p>Email security, DLP, access reviews, audit support, vendor risk management</p>
       </div>
-      <div class="tile">
+      <div class="skill-tile">
         <strong>Microsoft 365</strong>
-        <p>Exchange Online, Teams, SharePoint, OneDrive, retention & compliance</p>
+        <p>Exchange Online, Teams, SharePoint, OneDrive, retention &amp; compliance</p>
       </div>
-      <div class="tile">
+      <div class="skill-tile">
         <strong>Automation</strong>
-        <p>PowerShell (user lifecycle, reporting, administration), workflow automation</p>
+        <p>PowerShell scripting for user lifecycle, reporting, and administration</p>
       </div>
-      <div class="tile">
-        <strong>ITSM & Monitoring</strong>
-        <p>ServiceNow, Jira, ConnectWise, monitoring & alerting</p>
+      <div class="skill-tile">
+        <strong>ITSM &amp; Monitoring</strong>
+        <p>ServiceNow, Jira, ConnectWise, monitoring &amp; alerting</p>
       </div>
-      <div class="tile">
-        <strong>M&A & Integrations</strong>
-        <p>Tenant consolidations, identity & email migrations, infrastructure transitions</p>
+      <div class="skill-tile">
+        <strong>M&amp;A &amp; Integrations</strong>
+        <p>Tenant consolidations, identity &amp; email migrations, infrastructure transitions</p>
       </div>
-      <div class="tile">
+      <div class="skill-tile">
         <strong>End-User Operations</strong>
         <p>Help desk leadership, white-glove support, outsourced IT oversight</p>
       </div>
@@ -678,79 +829,115 @@
   </section>
 
   <!-- CERTS -->
-  <section id="certs" class="card section">
-    <div class="sectionHead">
+  <section id="certs" class="card section-inner fade-in">
+    <div class="section-header">
       <h2>Certifications</h2>
-      <span class="hint">Verified</span>
+      <span class="section-badge">Verified</span>
     </div>
-    <div class="tile">
-      <strong>CompTIA Network+</strong> (2025) —
+    <div class="info-tile">
+      <strong>CompTIA Network+</strong> (2025) &mdash;
       <a href="https://www.credly.com/badges/32f9db9d-5304-4ea8-86d8-ffa71082f618/public_url"
-         target="_blank" rel="noreferrer"
-         style="text-decoration:underline;text-underline-offset:3px;">
-        Digital Badge
+         target="_blank" rel="noopener noreferrer">
+        View Digital Badge
       </a>
     </div>
   </section>
 
   <!-- EDUCATION -->
-  <section id="education" class="card section">
-    <div class="sectionHead">
+  <section id="education" class="card section-inner fade-in">
+    <div class="section-header">
       <h2>Education</h2>
-      <span class="hint">Academic</span>
+      <span class="section-badge">Academic</span>
     </div>
-    <div class="tile">
-      Bachelor of Science — Information Technology, Miami, FL
+    <div class="info-tile">
+      <strong>Bachelor of Science</strong> &mdash; Information Technology, Miami, FL
     </div>
   </section>
 
   <footer>
-    © <span id="year"></span> Ailyn Gonzalez
+    &copy; <span id="year"></span> Ailyn Gonzalez
   </footer>
 
 </div>
 
 <script>
-  // Footer year
+  // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('menuBtn');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const nav = document.getElementById('nav');
-
-  function setMenu(open){
-    document.body.classList.toggle('menuOpen', open);
-    menuBtn?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  // Headshot fallback (no inline onerror)
+  var img = document.getElementById('headshotImg');
+  var fallback = document.getElementById('headshotFallback');
+  if (img && fallback) {
+    img.addEventListener('error', function() {
+      img.style.display = 'none';
+      fallback.style.display = 'flex';
+    });
   }
 
-  menuBtn?.addEventListener('click', () => {
-    const open = !document.body.classList.contains('menuOpen');
-    setMenu(open);
-  });
+  // Mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  var nav = document.getElementById('nav');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var topbar = menuBtn ? menuBtn.closest('.topbar') : null;
 
-  // Close menu when clicking a link
-  mobileMenu?.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => setMenu(false));
-  });
+  function setMenu(open) {
+    if (!topbar) return;
+    topbar.classList.toggle('menu-open', open);
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', String(open));
+  }
+
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function() {
+      var isOpen = topbar && topbar.classList.contains('menu-open');
+      setMenu(!isOpen);
+    });
+  }
+
+  // Close menu on link click
+  if (mobileMenu) {
+    var links = mobileMenu.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function() { setMenu(false); });
+    }
+  }
 
   // Close on outside click
-  document.addEventListener('click', (e) => {
-    if(!document.body.classList.contains('menuOpen')) return;
-    const inside = nav.contains(e.target) || mobileMenu.contains(e.target);
-    if(!inside) setMenu(false);
+  document.addEventListener('click', function(e) {
+    if (!topbar || !topbar.classList.contains('menu-open')) return;
+    var inside = (nav && nav.contains(e.target)) || (mobileMenu && mobileMenu.contains(e.target));
+    if (!inside) setMenu(false);
   });
 
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const id = a.getAttribute('href');
-      const el = document.querySelector(id);
-      if(!el) return;
-      e.preventDefault();
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && topbar && topbar.classList.contains('menu-open')) {
+      setMenu(false);
+      if (menuBtn) menuBtn.focus();
+    }
   });
+
+  // Fade-in on scroll (IntersectionObserver)
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    var els = document.querySelectorAll('.fade-in');
+    for (var j = 0; j < els.length; j++) {
+      observer.observe(els[j]);
+    }
+  } else {
+    // Fallback: just show everything
+    var allFade = document.querySelectorAll('.fade-in');
+    for (var k = 0; k < allFade.length; k++) {
+      allFade[k].classList.add('visible');
+    }
+  }
 </script>
 </body>
 </html>
